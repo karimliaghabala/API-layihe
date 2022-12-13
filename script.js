@@ -11,8 +11,18 @@ const rubRight = document.querySelector('.rubRight');
 const usdRight = document.querySelector('.usdRight');
 const eurRight = document.querySelector('.eurRight');
 const aznRight = document.querySelector('.aznRight');
-
+/*I have a RUB */
 rubLeft.addEventListener('click', () => {
+    rubLeft.id = 'clickButton'
+    usdRight.id = 'clickButton'
+    aznLeft.id = ''
+    eurLeft.id = ''
+    usdLeft.id = ''
+    rubRight.id = ''
+    aznRight.id = ''
+    eurRight.id = ''
+    secondInput.value = ""
+    firstInput.value = ""
     fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
         .then(resp => resp.json())
         .then(data => {
@@ -20,112 +30,282 @@ rubLeft.addEventListener('click', () => {
             firstInput.addEventListener('keyup', () => {
                 secondInput.value = firstInput.value * data.rates.USD
             })
-            secondInput.addEventListener('keyup', () => {
-                firstInput.value = firstInput.value * data.rates.USD
-            })
             fetch('https://api.exchangerate.host/latest?base=USD&symbols')
                 .then(resp => resp.json())
                 .then(data => {
                     valyutaP2.textContent = `1 USD = ${data.rates.RUB} RUB`
                 })
         })
-    rubLeft.style.background = "#833AE0"
-    rubLeft.style.color = "white"
-    usdRight.style.background = "#833AE0"
-    usdRight.style.color = "white"
-    aznRight.style.background = "white"
-    aznRight.style.color = "#8d8787"
-    eurRight.style.background = "white"
-    eurRight.style.color = "#8d8787"
-
-})
-
-usdRight.addEventListener('click', () => {
-    fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
-        .then(resp => resp.json())
-        .then(data => {
-                        fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
+    eurRight.addEventListener('click', () => {
+        aznRight.id = ''
+        usdRight.id = ''
+        eurRight.id = 'clickButton'
+        secondInput.value = ""
+        firstInput.value = ""
+        fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
             .then(resp => resp.json())
             .then(data => {
-                valyutaP1.textContent = `1 RUB = ${data.rates.EUR} EUR`
-            })
-            firstInput.addEventListener('keyup', () => {
-                secondInput.value = firstInput.value * data.rates.USD
-            })
-            secondInput.addEventListener('keyup', () => {
-                firstInput.value = firstInput.value * data.rates.USD
-            })
-            fetch('https://api.exchangerate.host/latest?base=USD&symbols')
-                .then(resp => resp.json())
-                .then(data => {
-                    valyutaP2.textContent = `1 USD = ${data.rates.RUB} RUB`
+                fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP1.textContent = `1 RUB = ${data.rates.EUR} EUR`
+                    })
+                firstInput.addEventListener('keyup', () => {
+                    secondInput.value = firstInput.value * data.rates.EUR
                 })
-        })
-    usdRight.style.background = "#833AE0"
-    eurRight.style.background = "white"
-    eurRight.style.color = "#8d8787"
-    usdRight.style.color = "white"
-    aznRight.style.background = "white"
-    aznRight.style.color = "#8d8787"
+                fetch('https://api.exchangerate.host/latest?base=EUR&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP2.textContent = `1 EUR = ${data.rates.RUB} RUB`
+                    })
+            })
+    })
+    aznRight.addEventListener('click', () => {
+        usdRight.id = ''
+        eurRight.id = ''
+        aznRight.id = 'clickButton'
+        secondInput.value = ""
+        firstInput.value = ""
+        fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
+            .then(resp => resp.json())
+            .then(data => {
+                fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP1.textContent = `1 RUB = ${data.rates.AZN} AZN`
+                    })
+                firstInput.addEventListener('keyup', () => {
+                    secondInput.value = firstInput.value * data.rates.AZN
+                })
+                fetch('https://api.exchangerate.host/latest?base=AZN&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP2.textContent = `1 AZN = ${data.rates.RUB} RUB`
+                    })
+            })
+    })
 })
-
-eurRight.addEventListener('click', () => {
-    fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
+/*I have a USD */
+usdLeft.addEventListener('click', () => {
+    usdLeft.id = 'clickButton'
+    rubRight.id = 'clickButton'
+    aznLeft.id = ''
+    eurLeft.id = ''
+    usdRight.id = ''
+    aznRight.id = ''
+    eurRight.id = ''
+    rubLeft.id = ''
+    secondInput.value = ""
+    firstInput.value = ""
+    fetch('https://api.exchangerate.host/latest?base=USD&symbols')
         .then(resp => resp.json())
         .then(data => {
+            valyutaP1.textContent = `1 USD = ${data.rates.RUB} RUB`
+            firstInput.addEventListener('keyup', () => {
+                secondInput.value = firstInput.value * data.rates.RUB
+            })
             fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
-            .then(resp => resp.json())
-            .then(data => {
-                valyutaP1.textContent = `1 RUB = ${data.rates.EUR} EUR`
-            })
-            firstInput.addEventListener('keyup', () => {
-                secondInput.value = firstInput.value * data.rates.EUR
-            })
-            secondInput.addEventListener('keyup', () => {
-                firstInput.value = firstInput.value * data.rates.EUR
-            })
-            fetch('https://api.exchangerate.host/latest?base=EUR&symbols')
                 .then(resp => resp.json())
                 .then(data => {
-                    valyutaP2.textContent = `1 EUR = ${data.rates.RUB} RUB`
+                    valyutaP2.textContent = `1 RUB = ${data.rates.USD} USD`
                 })
         })
-    usdRight.style.background = "white"
-    eurRight.style.background = "#833AE0"
-    aznRight.style.background = "white"
-    aznRight.style.color = "#8d8787"
-    eurRight.style.color = "white"
-    usdRight.style.color = "#8d8787"
+    eurRight.addEventListener('click', () => {
+        aznRight.id = ''
+        rubRight.id = ''
+        eurRight.id = 'clickButton'
+        secondInput.value = ""
+        firstInput.value = ""
+        fetch('https://api.exchangerate.host/latest?base=USD&symbols')
+            .then(resp => resp.json())
+            .then(data => {
+                fetch('https://api.exchangerate.host/latest?base=USD&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP1.textContent = `1 USD = ${data.rates.EUR} EUR`
+                    })
+                firstInput.addEventListener('keyup', () => {
+                    secondInput.value = firstInput.value * data.rates.EUR
+                })
+                fetch('https://api.exchangerate.host/latest?base=EUR&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP2.textContent = `1 EUR = ${data.rates.USD} USD`
+                    })
+            })
+    })
+    aznRight.addEventListener('click', () => {
+        eurRight.id = ''
+        rubRight.id = ''
+        aznRight.id = 'clickButton'
+        secondInput.value = ""
+        firstInput.value = ""
+        fetch('https://api.exchangerate.host/latest?base=USD&symbols')
+            .then(resp => resp.json())
+            .then(data => {
+                fetch('https://api.exchangerate.host/latest?base=USD&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP1.textContent = `1 USD = ${data.rates.AZN} AZN`
+                    })
+                firstInput.addEventListener('keyup', () => {
+                    secondInput.value = firstInput.value * data.rates.AZN
+                })
+                fetch('https://api.exchangerate.host/latest?base=AZN&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP2.textContent = `1 AZN = ${data.rates.USD} USD`
+                    })
+            })
+    })
 })
-
-
-aznRight.addEventListener('click', () => {
-    fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
+/*I have a EUR */
+eurLeft.addEventListener('click', () => {
+    eurLeft.id = 'clickButton'
+    rubRight.id = 'clickButton'
+    usdLeft.id = ''
+    usdRight.id = ''
+    aznRight.id = ''
+    eurRight.id = ''
+    rubLeft.id = ''
+    aznLeft.id = ''
+    secondInput.value = ""
+    firstInput.value = ""
+    fetch('https://api.exchangerate.host/latest?base=EUR&symbols')
         .then(resp => resp.json())
         .then(data => {
-            fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
-            .then(resp => resp.json())
-            .then(data => {
-                valyutaP1.textContent = `1 RUB = ${data.rates.AZN} AZN`
-            })
+            valyutaP1.textContent = `1 EUR = ${data.rates.RUB} RUB`
             firstInput.addEventListener('keyup', () => {
-                secondInput.value = firstInput.value * data.rates.AZN
+                secondInput.value = firstInput.value * data.rates.RUB
             })
-            secondInput.addEventListener('keyup', () => {
-                firstInput.value = firstInput.value * data.rates.AZN
-            })
-            fetch('https://api.exchangerate.host/latest?base=AZN&symbols')
+            fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
                 .then(resp => resp.json())
                 .then(data => {
-                    valyutaP2.textContent = `1 AZN = ${data.rates.RUB} RUB`
+                    valyutaP2.textContent = `1 RUB = ${data.rates.EUR} EUR`
                 })
         })
-    aznRight.style.background = "#833AE0"
-    aznRight.style.color = "white"
-    usdRight.style.background = "white"
-    eurRight.style.background = "white"
-    eurRight.style.color = "#8d8787"
-    usdRight.style.color = "#8d8787"
+    usdRight.addEventListener('click', () => {
+        usdRight.id = 'clickButton'
+        aznRight.id = ''
+        rubRight.id = ''
+        eurRight.id = ''
+        secondInput.value = ""
+        firstInput.value = ""
+        fetch('https://api.exchangerate.host/latest?base=EUR&symbols')
+            .then(resp => resp.json())
+            .then(data => {
+                fetch('https://api.exchangerate.host/latest?base=EUR&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP1.textContent = `1 EUR = ${data.rates.USD} USD`
+                    })
+                firstInput.addEventListener('keyup', () => {
+                    secondInput.value = firstInput.value * data.rates.USD
+                })
+                fetch('https://api.exchangerate.host/latest?base=USD&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP2.textContent = `1 USD = ${data.rates.EUR} EUR`
+                    })
+            })
+    })
+    aznRight.addEventListener('click', () => {
+        usdRight.id = ''
+        rubRight.id = ''
+        aznRight.id = 'clickButton'
+        secondInput.value = ""
+        firstInput.value = ""
+        fetch('https://api.exchangerate.host/latest?base=EUR&symbols')
+            .then(resp => resp.json())
+            .then(data => {
+                fetch('https://api.exchangerate.host/latest?base=EUR&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP1.textContent = `1 EUR = ${data.rates.AZN} AZN`
+                    })
+                firstInput.addEventListener('keyup', () => {
+                    secondInput.value = firstInput.value * data.rates.AZN
+                })
+                fetch('https://api.exchangerate.host/latest?base=AZN&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP2.textContent = `1 AZN = ${data.rates.EUR} EUR`
+                    })
+            })
+    })
 })
-
-
+/*I have a AZN */
+aznLeft.addEventListener('click', () => {
+    aznLeft.id = 'clickButton'
+    rubRight.id = 'clickButton'
+    eurLeft.id = ''
+    usdLeft.id = ''
+    usdRight.id = ''
+    aznRight.id = ''
+    eurRight.id = ''
+    rubLeft.id = ''
+    secondInput.value = ""
+    firstInput.value = ""
+    fetch('https://api.exchangerate.host/latest?base=AZN&symbols')
+        .then(resp => resp.json())
+        .then(data => {
+            valyutaP1.textContent = `1 AZN = ${data.rates.RUB} RUB`
+            firstInput.addEventListener('keyup', () => {
+                secondInput.value = firstInput.value * data.rates.RUB
+            })
+            fetch('https://api.exchangerate.host/latest?base=RUB&symbols')
+                .then(resp => resp.json())
+                .then(data => {
+                    valyutaP2.textContent = `1 RUB = ${data.rates.AZN} AZN`
+                })
+        })
+    usdRight.addEventListener('click', () => {
+        usdRight.id = 'clickButton'
+        aznRight.id = ''
+        rubRight.id = ''
+        eurRight.id = ''
+        secondInput.value = ""
+        firstInput.value = ""
+        fetch('https://api.exchangerate.host/latest?base=AZN&symbols')
+            .then(resp => resp.json())
+            .then(data => {
+                fetch('https://api.exchangerate.host/latest?base=EUR&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP1.textContent = `1 AZN = ${data.rates.USD} USD`
+                    })
+                firstInput.addEventListener('keyup', () => {
+                    secondInput.value = firstInput.value * data.rates.USD
+                })
+                fetch('https://api.exchangerate.host/latest?base=USD&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP2.textContent = `1 USD = ${data.rates.AZN} AZN`
+                    })
+            })
+    })
+    eurRight.addEventListener('click', () => {
+        usdRight.id = ''
+        rubRight.id = ''
+        eurRight.id = 'clickButton'
+        secondInput.value = ""
+        firstInput.value = ""
+        fetch('https://api.exchangerate.host/latest?base=AZN&symbols')
+            .then(resp => resp.json())
+            .then(data => {
+                fetch('https://api.exchangerate.host/latest?base=AZN&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP1.textContent = `1 AZN = ${data.rates.EUR} EUR`
+                    })
+                firstInput.addEventListener('keyup', () => {
+                    secondInput.value = firstInput.value * data.rates.EUR
+                })
+                fetch('https://api.exchangerate.host/latest?base=EUR&symbols')
+                    .then(resp => resp.json())
+                    .then(data => {
+                        valyutaP2.textContent = `1 EUR = ${data.rates.AZN} AZN`
+                    })
+            })
+    })
+})
