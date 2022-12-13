@@ -6,6 +6,7 @@ const valyutaP1 = document.querySelector('.valyuta1');
 const valyutaP2 = document.querySelector('.valyuta2');
 const firstInput = document.querySelector('.firstInput');
 const secondInput = document.querySelector('.secondInput');
+const reset = document.querySelector('.reset');
 
 const rubRight = document.querySelector('.rubRight');
 const usdRight = document.querySelector('.usdRight');
@@ -308,4 +309,9 @@ aznLeft.addEventListener('click', () => {
                     })
             })
     })
+})
+/*RESET */
+reset.addEventListener('click',()=>{
+    reset.id = 'clickButton'
+    location.reload();
 })

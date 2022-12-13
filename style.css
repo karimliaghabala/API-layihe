@@ -65,4 +65,12 @@ body{
     background-color: #833AE0;
     color: white;
 }
+.reset{
+    color: #8d8787;
+    width: 63px;
+    height: 28px;
+    background-color: white;
+    border: 1px solid #E5E5E5;
+    cursor: pointer;
+}
 
